@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xwj2001.mapper.CommodityImgMapper">
+    <insert id="addImg">
+        insert into commodity_img (commodity_img_url,commodity_id) values
+            (#{commodityImgUrl},#{commodityId})
+    </insert>
+    <update id="updateImg">
+        update commodity_img set commodity_img_url=#{commodityImgUrl} where commodity_img_id=#{commodityImgId}
+    </update>
+    <delete id="deleteImgById">
+        delete from commodity_img where commodity_img_id=#{commodityImgId}
+    </delete>
+
+    <select id="findAllImg" resultType="com.xwj2001.entity.CommodityImg">
+        select ci.*,c.*
+        from commodity_img ci
+                 left join commodity c on ci.commodity_id = c.commodity_id
+    </select>
+    <select id="findImg" resultType="com.xwj2001.entity.CommodityImg">
+        select ci.*,c.*
+        from commodity_img ci
+        left join commodity c on ci.commodity_id = c.commodity_id
+        WHERE 1 = 1
+        <if test="commodityName != null">
+            AND c.commodity_name LIKE concat('%',#{commodityName},'%')
+        </if>
+    </select>
+</mapper>

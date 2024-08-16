@@ -1,0 +1,61 @@
+<!--pages/home/home.wxml-->
+<view class="top">
+  <t-sticky offset-top="{{navbarHeight}}">
+    <view class="t-navbar" t-class-placeholder="t-navbar-placeholder" t-class-content="t-navbar-content" leftIcon="slot">
+      <view class="search-box" slot="left">
+        <t-search shape="round" placeholder="搜索内容" />
+      </view>
+    </view>
+  </t-sticky>
+</view>
+<view class="slideshow">
+  <t-swiper current="{{current}}" autoplay="{{autoplay}}" duration="{{duration}}" interval="{{interval}}" list="{{swiperList}}" navigation="{{ { type: 'dots-bar' } }}" />
+</view>
+<view class="type">
+  <t-tabs defaultValue="{{0}}" t-class="custom-tabs" t-class-content="custom-panel">
+    <t-tab-panel label="类型" value="0" style="{{tabPanelstyle}}">
+      <view style="display: flex; flex-wrap: wrap;justify-content: start; padding: 10px 20px;">
+        <view data-Id="{{item.commodityTypeId}}" bind:tap="goTypes" wx:for="{{typeList}}" wx:key="commodityTypeId" style="width:calc(25% - 10px); border-radius: 10px; background-color: rgba(180, 131, 115, 0.308); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);margin:5px">
+          <view style="text-align: center;">
+            <image style="height: 115rpx; width: 115rpx;padding: 12rpx; border-radius: 30px; " src="{{item.commodityTypeImgUrl}}" alt="" />
+          </view>
+          <view style="text-align: center;margin-bottom: 5px;">{{item.commodityTypeName}}</view>
+        </view>
+      </view>
+    </t-tab-panel>
+    <t-tab-panel label="款式" value="1" style="{{tabPanelstyle}}">
+      <view style="display: flex; flex-wrap: wrap;justify-content: start; padding: 10px 20px;">
+        <view data-Id="{{item.commodityStyleId}}" bind:tap="goStys" wx:for="{{styleList}}" wx:key="commodityStyleId" style="width:calc(25% - 10px);margin:5px; border-radius: 10px; background-color: rgba(180, 131, 115, 0.308); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); margin: 5px;">
+          <view style="text-align: center;">
+            <image style="height: 115rpx; width: 115rpx;padding: 12rpx; border-radius: 30px;" src="{{item.commodityStyleImgUrl}}" alt="" />
+          </view>
+          <view style="text-align: center;margin-bottom: 5px;">{{item.commodityStyleName}}</view>
+        </view>
+      </view>
+    </t-tab-panel>
+  </t-tabs>
+</view>
+<view class="activityList">
+  <view data-Id="{{item.activityId}}" bind:tap="goActivity" class="activity" wx:for="{{activityList}}" wx:key="activityId">
+    <image class="activity-image" src="{{item.activityImgUrl}}"></image>
+  </view>
+</view>
+<view class="goodsList">
+  <view class="card-wrapper">
+    <view class="card-container" wx:for="{{goodsList}}" wx:key="commodityId">
+    <view data-Id="{{item.commodityId}}" bind:tap="goGoods">
+      <view>
+        <image class="card-image" src="{{item.commodityUrl}}" alt=""></image>
+      </view>
+      <view class="card-content">
+        <h2 style="font-size: large;">{{item.commodityName}}</h2>
+        <view class="text-area">
+          <p style="font-size: xx-small;">工费:{{item.commodityWage}}元/g</p>
+          <p style="font-size: xx-small;">克重:{{item.commodityWeight}}g  库存:{{item.commodityInventory}}</p>
+          <p style="color: red;">￥{{item.commodityPrice}}</p>
+        </view>
+      </view>
+    </view>
+    </view>
+  </view>
+</view>

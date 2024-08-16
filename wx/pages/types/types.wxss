@@ -1,0 +1,83 @@
+/* pages/types/types.wxss */
+page {
+  background-color: #e6e7e7;
+}
+.search-box {
+  --td-search-height: 70rpx;
+  width: 70%;
+  background-color: rgb(255, 255, 255);
+}
+
+.top{
+  position: fixed; /* 设置为固定定位 */
+  left: 0; /* 距离左侧为 0 */
+  top: 0; /* 距离底部为 0 */
+  width: 100%; /* 宽度为整个页面宽度 */
+  background-color: #ffffff; /* 设置背景颜色 */
+  padding-top: 20rpx;
+}
+
+.goodsList{
+  padding-top: 180rpx;
+  margin: 15rpx;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* 每行最多两个卡片，左右对齐 */
+}
+
+.card-container {
+  width: calc(50% - 5px); /* 每个卡片容器占据一半宽度，减去间距 */
+  margin-bottom: 10px; /* 控制卡片之间的垂直间距 */
+  border-radius: 10px;
+  background-color: #fff; /* 卡片背景色 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+  overflow: hidden; /* 防止图片溢出卡片 */
+}
+
+.card-image {
+  width: 100%;
+  height: 350rpx;
+}
+
+.card-content {
+  padding: 0px 10px 10px; /* 调整文本内容区域的内边距 */
+}
+
+.text-area {
+  display: grid;
+  grid-template-rows: repeat(5, auto); /* 五个区域，每个自动调整高度 */
+}
+
+.text-area p {
+  margin: 0; /* 去除段落的默认边距 */
+}
+.card-content h2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 最多显示两行 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 超出部分用省略号表示 */
+}
+
+.sort-wrap{
+  height: 90rpx;
+  line-height: 90rpxs;
+  background-color:#fff;
+}
+.sort-btn{
+  width:25%;
+  float:left;
+  text-align: center;
+  height:90rpx;
+  line-height:90rpx;
+  font-size: 28rpx;
+  color:#333;
+}
+.sort-btn image{
+  width: 25rpx;
+  height: 25rpx;
+  margin-left:6rpx;
+}

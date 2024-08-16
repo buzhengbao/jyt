@@ -1,0 +1,131 @@
+/* pages/goods.wxss */
+page {
+  background-color: #e6e7e7;
+}
+.img {
+  width: 100%;
+  height: 100%;
+}
+
+.wage {
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #fff;
+  background-color: red;
+  font-size: 30rpx;
+  padding: 20rpx;
+  display: flex;
+}
+
+.info {
+  background-color: white;
+  padding: 20rpx;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 30rpx;
+}
+
+.block .margin-16:not(:last-child) {
+  margin-right: 32rpx;
+}
+
+.tag {
+  display: inline;
+  margin-right: 10rpx;
+}
+
+.price {
+  color: red;
+  font-weight: bold;
+  font-size: 45rpx;
+}
+
+.num {
+  padding-top: 20rpx;
+  font-size: small;
+}
+
+.quality {
+  padding: 15rpx;
+  background-color: white;
+  display: flex;
+  margin-top: 10rpx;
+  font-size: small;
+}
+.area {
+  flex: 1;
+  /* 平均分配剩余空间 */
+}
+.details{
+  margin-top: 10rpx;
+  background-color: white;
+}
+.details .text{
+  padding-top: 20rpx;
+  padding-left: 20rpx;
+  font-size: 35rpx;
+  font-weight: bold;
+  border-bottom: solid ;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  width: 25%;
+}
+.details image{
+  width: 100%;
+  height: 750rpx;
+}
+.footer{
+  position: fixed; /* 设置为固定定位 */
+  left: 0; /* 距离左侧为 0 */
+  bottom: 0; /* 距离底部为 0 */
+  width: 100%; /* 宽度为整个页面宽度 */
+  border-radius: 30rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #ffffff00; /* 设置背景颜色 */
+}
+.go{
+  background-color: red;
+  color: #fff;
+  height: 60rpx;
+  line-height:60rpx;
+  text-align: center;
+  border-radius: 30rpx;
+  margin-left: 65%;
+  margin-right: 10%;
+}
+.show{
+  z-index: 999;
+  position: fixed; /* 设置为固定定位 */
+  width: 100%; /* 宽度为整个页面宽度 */
+  height: 100%;
+  line-height: 100%;
+  background-color: #33333362; /* 设置背景颜色 */
+}
+.card { 
+  margin: 50rpx;
+  margin-top: 250rpx;
+  height: 50%;
+  margin-bottom: 20px; /* 根据需要调整卡片之间的间距 */
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 55rpx;
+}
+.card-header {
+  text-align: center;
+  font-size: larger;
+  padding: 20px;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+.card-content {
+  padding-left: 10%;
+  margin-top: 20rpx;
+  border: 1px solid #ccc;
+  height: 100rpx;
+  width: 90%;
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,53 @@
+<!--pages/goods.wxml-->
+<t-message id="t-message" />
+<view wx:if="{{ show }}" class="show">
+  <view class="card">
+    <view class="card-header">客户信息</view>
+    <view class="card-content">
+      <view>姓名：</view>
+      <input value="{{client}}" bind:input="inputClient" placeholder="请输入姓名"></input>
+    </view>
+    <view class="card-content">
+      <view>电话：</view>
+      <input value="{{tel}}" bind:input="inputTel" placeholder="请输入电话"></input>
+    </view>
+    <view class="card-content">
+      <view>数量：</view>
+      <input value="{{num}}" bind:input="inputNum" placeholder="请输入数量"></input>
+    </view>
+    <view>
+    <button style="margin-top: 40rpx; background: crimson;width: 50%;color: ghostwhite;" bind:tap="no">取消</button>
+    <button style="margin-top: 20rpx; background: forestgreen;width: 50%;color: ghostwhite;" bind:tap="yes">确定</button>
+    </view>
+  </view>
+</view>
+<view>
+  <t-swiper height="750rpx" current="{{current}}" autoplay="{{autoplay}}" duration="{{duration}}" interval="{{interval}}" list="{{imgList}}" navigation="{{ { type: 'dots-bar' } }}" />
+</view>
+<view class="wage" wx:for="{{CommodityInfo}}">基础工费:<view style="font-size: 40rpx;margin-right: 40rpx;">{{item.commodityWage}}元/g</view>附加费:
+  <view style="font-size: 40rpx;">23元/g</view>
+</view>
+<view class="info" wx:for="{{CommodityInfo}}">
+  <view class="name">{{item.commodityName}}</view>
+  <view class="tag" wx:for="{{TagInfo}}">
+    <t-tag class="margin-16" size="small" variant="light-outline" theme="{{item.commodityTagColor}}">{{item.commodityTagName}}</t-tag>
+  </view>
+  <view class="price">￥{{item.commodityPrice}}</view>
+  <view class="num">款号:{{item.commodityNum}}</view>
+</view>
+<view class="quality" wx:for="{{CommodityInfo}}">
+  <view class="area">成色:{{item.commodityFineness}}</view>
+  <view class="area" style="text-align: center;">克重:{{item.commodityWeight}}g</view>
+  <view class="area" style="text-align: right;">库存:{{item.commodityInventory}}</view>
+</view>
+<view class="details">
+  <view class="text">商品详情</view>
+  <view style="padding-left: 10rpx;padding-right: 10rpx;overflow: hidden;">
+    <image wx:for="{{imgList}}" src="{{item.value}}"></image>
+    <image style="height: 2000rpx;" src="../../images/20240530214631.jpg" mode="" />
+    <image src="../../images/20240530214636.jpg" mode="" />
+  </view>
+</view>
+<view class="footer">
+  <view class="go" bind:tap="go">订购</view>
+</view>

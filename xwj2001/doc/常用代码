@@ -1,0 +1,82 @@
+jquery选择 根据 单选框的Value来选中
+$(":radio[name = 'userFrozen'][value='" + userFrozen + "']").prop("checked","checked");
+
+jquery 获取radio选中的值
+let userFrozen = $("input[name = 'userFrozen']:checked").val();
+
+jquery 根据值选中对应的项
+ $('#adTypeId option[value="'+adTypeId+'"]').prop("selected","selected");
+
+分页
+<div class="panel">
+        <div class="panel-body" style="padding: 0px;">
+            <div class="col-sm-12" style="padding: 0px;text-align: center;">
+                <ul class="pager" style="margin-top: 10px;margin-bottom: 10px">
+                    <li class="previous" onclick="getNewData(1)">
+                        <a href="javascript:void(0)"><i class="icon icon-step-backward"></i></a>
+                    </li>
+
+                    <#if userPage.pageNumber lte 1>
+                        <li class="previous disabled">
+                            <a href="javascript:void(0)"><i class="icon icon-chevron-left"></i></a>
+                        </li>
+                    <#else>
+                        <li class="previous" onclick="getNewData('${userPage.pageNumber-1}')">
+                            <a href="javascript:void(0)"><i class="icon icon-chevron-left"></i></a>
+                        </li>
+                    </#if>
+                    <li>
+                        <a href="javascript:void(0)" class="btn">${userPage.pageNumber}
+                            页/共${userPage.totalPage}</a>
+                    </li>
+                    <#if userPage.pageNumber gte userPage.totalPage>
+                        <li class="next disabled">
+                            <a href="javascript:void(0)"><i class="icon icon-chevron-right"></i></a>
+                        </li>
+                    <#else>
+                        <li class="next" onclick="getNewData('${userPage.pageNumber+1}')">
+                            <a href="javascript:void(0)"><i class="icon icon-chevron-right"></i></a>
+                        </li>
+                    </#if>
+                    <li class="previous" onclick="getNewData('${userPage.totalPage}')">
+                        <a href="javascript:void(0)"><i class="icon icon-step-forward"></i></a>
+                    </li>
+
+                    <li class="next">
+                        <a href="javascript:void(0)">
+                            <label for="renderPageNumber"></label><input type="number" id="renderPageNumber"
+                                                                         maxlength="5" style="width: 50px;height: 20px;"
+                                                                         oninput="value=value.replace(/\D/g,'')">
+                        </a>
+                    </li>
+                    <li class="next">
+                        <a href="javascript:void(0)" onclick="renderPage()" style="padding-left: 2px;padding-right: 2px;">
+                            跳转
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+        function getNewData(pageNumber) {
+            if (!checkNotNull(pageNumber)) {
+                pageNumber = 1;
+            }
+            window.location.href = "/xwj2001/user/list?pageNumber=" + pageNumber + "<#if (userName?? && userName?length>0)>${userName}</#if>"
+        }
+
+        function renderPage() {
+            let renderPageNumber = $("#renderPageNumber").val();
+            if (!checkNotNull(renderPageNumber)) {
+                alert("请输入跳转的页码！");
+                return;
+            }
+            let totalPage = '${userPage.totalPage}';
+            if (parseInt(renderPageNumber) > parseInt(totalPage)) {
+                renderPageNumber = totalPage
+            }
+            getNewData(renderPageNumber);
+        }
+
+

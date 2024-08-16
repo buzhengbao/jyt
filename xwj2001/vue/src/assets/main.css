@@ -1,0 +1,9 @@
+a{
+    text-decoration: none;
+}
+.flex-grow {
+    flex-grow: 1;
+}
+body{
+    margin-top: 60px;
+}

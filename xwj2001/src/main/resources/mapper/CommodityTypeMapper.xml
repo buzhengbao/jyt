@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xwj2001.mapper.CommodityTypeMapper">
+    <insert id="addType">
+        insert into commodity_type (commodity_type_name,commodity_type_img_url,commodity_type_addtime) values
+            (#{commodityTypeName},#{commodityTypeImgUrl},#{commodityTypeAddTime})
+    </insert>
+    <update id="updateType">
+        update commodity_type
+        <set>
+            <if test="commodityTypeName != null and commodityTypeName != ''">
+                commodity_type_name=#{commodityTypeName},
+            </if>
+            <if test="commodityTypeImgUrl != null and commodityTypeImgUrl != ''">
+                commodity_type_img_url=#{commodityTypeImgUrl}
+            </if>
+        </set>
+        where commodity_type_id=#{commodityTypeId}
+    </update>
+    <delete id="deleteTypeById">
+        delete from commodity_type where commodity_type_id=#{commodityTypeId}
+    </delete>
+    <select id="findAllType" resultType="com.xwj2001.entity.CommodityType">
+        select * from commodity_type
+    </select>
+    <select id="findType" resultType="com.xwj2001.entity.CommodityType">
+        select * from commodity_type where commodity_type_name like concat('%',#{commodityTypeName},'%')
+    </select>
+</mapper>

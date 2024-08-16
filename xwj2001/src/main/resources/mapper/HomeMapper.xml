@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xwj2001.mapper.HomeMapper">
+    <select id="cCount" resultType="com.xwj2001.entity.Home">
+        select count(*) as cCount  from commodity;
+    </select>
+    <select id="ctyCount" resultType="com.xwj2001.entity.Home">
+        select count(*) as ctyCount from commodity_type;
+    </select>
+    <select id="csCount" resultType="com.xwj2001.entity.Home">
+        select count(*) as csCount from commodity_style;
+    </select>
+    <select id="aCount" resultType="com.xwj2001.entity.Home">
+        select count(*) as aCount from activity;
+    </select>
+    <select id="uCount" resultType="com.xwj2001.entity.Home">
+        select count(*) as uCount from user;
+    </select>
+    <select id="ctCount" resultType="com.xwj2001.entity.Home">
+        select count(*) as ctCount from commodity_tag;
+    </select>
+    <select id="typeTotal" resultType="com.xwj2001.entity.Home">
+        SELECT
+            cty.*,
+            ( SELECT count( 1 ) FROM commodity c WHERE c.commodity_type_id = cty.commodity_type_id ) AS commodityCount
+        FROM
+            commodity_type cty
+        order by cty.commodity_type_id
+
+    </select>
+    <select id="styleTotal" resultType="com.xwj2001.entity.Home">
+        SELECT
+            cs.*,
+            ( SELECT count( 1 ) FROM commodity c WHERE c.commodity_style_id = cs.commodity_style_id ) AS commodityCount
+        FROM
+            commodity_style cs
+        order by cs.commodity_style_id
+    </select>
+    <select id="tagTotal" resultType="com.xwj2001.entity.Home">
+        SELECT
+            ct.*,
+            ( SELECT count( 1 ) FROM commodity_tag_list ctl WHERE ctl.commodity_tag_id = ct.commodity_tag_id ) AS commodityCount
+        FROM
+            commodity_tag ct
+        order by ct.commodity_tag_id
+    </select>
+</mapper>

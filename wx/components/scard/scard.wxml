@@ -1,0 +1,6 @@
+<view class="sort-button">
+  <button bindtap="toggleSort">
+    {{ sortTarget }}{{ sortAscending ? '↑' : '↓' }} 
+  </button>
+</view>
+

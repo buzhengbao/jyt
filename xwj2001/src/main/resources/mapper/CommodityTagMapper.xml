@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xwj2001.mapper.CommodityTagMapper">
+    <insert id="addTag">
+        insert into commodity_tag (commodity_tag_name,commodity_tag_color) values
+            (#{commodityTagName},#{commodityTagColor})
+    </insert>
+    <update id="updateTag">
+        update commodity_tag
+        <set>
+            <if test="commodityTagName != null and commodityTagName != ''">
+                commodity_tag_name=#{commodityTagName},
+            </if>
+            <if test="commodityTagColor != null and commodityTagColor != ''">
+                commodity_tag_color=#{commodityTagColor}
+            </if>
+        </set>
+        where commodity_tag_id=#{commodityTagId}
+    </update>
+    <delete id="deleteTagById">
+        delete from commodity_tag where commodity_tag_id=#{commodityTagId}
+    </delete>
+    <select id="findAllTag" resultType="com.xwj2001.entity.CommodityTag">
+        select * from commodity_tag
+    </select>
+    <select id="findTag" resultType="com.xwj2001.entity.CommodityTag">
+        SELECT * FROM commodity_tag
+        WHERE 1 = 1
+        <if test="commodityTagId != null">
+            AND commodity_tag_id = #{commodityTagId}
+        </if>
+        <if test="commodityTagName != null">
+            AND commodity_tag_name LIKE concat('%',#{commodityTagName},'%')
+        </if>
+        <if test="commodityTagColor != null">
+            AND commodity_tag_color = #{commodityTagColor}
+        </if>
+    </select>
+</mapper>

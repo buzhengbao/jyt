@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xwj2001.mapper.WxHomeMapper">
+    <select id="tag" resultType="com.xwj2001.entity.WxHome">
+        SELECT ctl.*,
+               c.*,
+               ct.*
+        FROM commodity_tag_list ctl
+                 LEFT JOIN commodity c ON ctl.commodity_id = c.commodity_id
+                 LEFT JOIN commodity_tag ct ON ctl.commodity_tag_id = ct.commodity_tag_id
+        WHERE c.commodity_id = #{commodityId}
+    </select>
+    <select id="type" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            cty.*
+        FROM
+            commodity c
+                LEFT JOIN commodity_type cty ON cty.commodity_type_id = c.commodity_type_id
+        WHERE
+            cty.commodity_type_id = #{commodityTypeId}
+#         order by c.commodity_price DESC;
+    </select>
+    <select id="commodity" resultType="com.xwj2001.entity.WxHome">
+        select * from commodity
+        where commodity_id = #{commodityId}
+    </select>
+    <select id="img" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            ci.*
+        FROM
+            commodity c
+                LEFT JOIN commodity_img ci ON ci.commodity_id = c.commodity_id
+        WHERE
+            ci.commodity_id = #{commodityId}
+    </select>
+    <select id="typePriceUp" resultType="com.xwj2001.entity.WxHome">
+        SELECT c.*,
+               cty.*
+        FROM commodity c
+                 LEFT JOIN commodity_type cty ON cty.commodity_type_id = c.commodity_type_id
+        WHERE cty.commodity_type_id = #{commodityTypeId}
+        order by c.commodity_price;
+    </select>
+    <select id="typePriceDown" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            cty.*
+        FROM
+            commodity c
+                LEFT JOIN commodity_type cty ON cty.commodity_type_id = c.commodity_type_id
+        WHERE
+            cty.commodity_type_id = #{commodityTypeId}
+        order by c.commodity_price DESC;
+    </select>
+    <select id="typeWageUp" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            cty.*
+        FROM
+            commodity c
+                LEFT JOIN commodity_type cty ON cty.commodity_type_id = c.commodity_type_id
+        WHERE
+            cty.commodity_type_id = #{commodityTypeId}
+        order by c.commodity_wage;
+    </select>
+    <select id="typeWageDown" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            cty.*
+        FROM
+            commodity c
+                LEFT JOIN commodity_type cty ON cty.commodity_type_id = c.commodity_type_id
+        WHERE
+            cty.commodity_type_id = #{commodityTypeId}
+        order by c.commodity_wage DESC ;
+    </select>
+    <select id="typeTimeUp" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            cty.*
+        FROM
+            commodity c
+                LEFT JOIN commodity_type cty ON cty.commodity_type_id = c.commodity_type_id
+        WHERE
+            cty.commodity_type_id = #{commodityTypeId}
+        order by c.commodity_addtime;
+    </select>
+    <select id="typeTimeDown" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            cty.*
+        FROM
+            commodity c
+                LEFT JOIN commodity_type cty ON cty.commodity_type_id = c.commodity_type_id
+        WHERE
+            cty.commodity_type_id = #{commodityTypeId}
+        order by c.commodity_addtime DESC;
+    </select>
+    <select id="style" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            cs.*
+        FROM
+            commodity c
+                LEFT JOIN commodity_style cs ON cs.commodity_style_id = c.commodity_style_id
+        WHERE
+            cs.commodity_style_id = #{commodityStyleId}
+    </select>
+    <select id="stylePriceUp" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            cs.*
+        FROM
+            commodity c
+                LEFT JOIN commodity_style cs ON cs.commodity_style_id = c.commodity_style_id
+        WHERE
+            cs.commodity_style_id = #{commodityStyleId}
+        order by c.commodity_price;
+    </select>
+    <select id="stylePriceDown" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            cs.*
+        FROM
+            commodity c
+                LEFT JOIN commodity_style cs ON cs.commodity_style_id = c.commodity_style_id
+        WHERE
+            cs.commodity_style_id = #{commodityStyleId}
+        order by c.commodity_price DESC;
+    </select>
+    <select id="styleWageUp" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            cs.*
+        FROM
+            commodity c
+                LEFT JOIN commodity_style cs ON cs.commodity_style_id = c.commodity_style_id
+        WHERE
+            cs.commodity_style_id = #{commodityStyleId}
+        order by c.commodity_wage;
+    </select>
+    <select id="styleWageDown" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            cs.*
+        FROM
+            commodity c
+                LEFT JOIN commodity_style cs ON cs.commodity_style_id = c.commodity_style_id
+        WHERE
+            cs.commodity_style_id = #{commodityStyleId}
+        order by c.commodity_wage DESC ;
+    </select>
+    <select id="styleTimeUp" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            cs.*
+        FROM
+            commodity c
+                LEFT JOIN commodity_style cs ON cs.commodity_style_id = c.commodity_style_id
+        WHERE
+            cs.commodity_style_id = #{commodityStyleId}
+        order by c.commodity_addtime;
+    </select>
+    <select id="styleTimeDown" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            cs.*
+        FROM
+            commodity c
+                LEFT JOIN commodity_style cs ON cs.commodity_style_id = c.commodity_style_id
+        WHERE
+            cs.commodity_style_id = #{commodityStyleId}
+        order by c.commodity_addtime DESC;
+    </select>
+    <select id="activity" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            a.*
+        FROM
+            commodity c
+                LEFT JOIN activity a ON a.activity_id = c.commodity_activity_id
+        WHERE
+            a.activity_id = #{activityId}
+    </select>
+    <select id="activityPriceUp" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            a.*
+        FROM
+            commodity c
+                LEFT JOIN activity a ON a.activity_id = c.commodity_activity_id
+        WHERE
+            a.activity_id = #{activityId}
+        order by c.commodity_price;
+    </select>
+    <select id="activityPriceDown" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            a.*
+        FROM
+            commodity c
+                LEFT JOIN activity a ON a.activity_id = c.commodity_activity_id
+        WHERE
+            a.activity_id = #{activityId}
+        order by c.commodity_price DESC;
+    </select>
+    <select id="activityWageUp" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            a.*
+        FROM
+            commodity c
+                LEFT JOIN activity a ON a.activity_id = c.commodity_activity_id
+        WHERE
+            a.activity_id = #{activityId}
+        order by c.commodity_wage;
+    </select>
+    <select id="activityWageDown" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            a.*
+        FROM
+            commodity c
+                LEFT JOIN activity a ON a.activity_id = c.commodity_activity_id
+        WHERE
+            a.activity_id = #{activityId}
+        order by c.commodity_wage DESC ;
+    </select>
+    <select id="activityTimeUp" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            a.*
+        FROM
+            commodity c
+                LEFT JOIN activity a ON a.activity_id = c.commodity_activity_id
+        WHERE
+            a.activity_id = #{activityId}
+        order by c.commodity_addtime;
+    </select>
+    <select id="activityTimeDown" resultType="com.xwj2001.entity.WxHome">
+        SELECT
+            c.*,
+            a.*
+        FROM
+            commodity c
+                LEFT JOIN activity a ON a.activity_id = c.commodity_activity_id
+        WHERE
+            a.activity_id = #{activityId}
+        order by c.commodity_addtime DESC;
+    </select>
+</mapper>

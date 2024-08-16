@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xwj2001.mapper.CommodityTagListMapper">
+    <insert id="addTagList">
+        insert into commodity_tag_list (commodity_id,commodity_tag_id) values
+            (#{commodityId},#{commodityTagId})
+    </insert>
+    <update id="updateTagList">
+        update commodity_tag_list set commodity_tag_id=#{commodityTagId}
+        where commodity_tag_list_id=#{commodityTagListId}
+    </update>
+    <delete id="deleteTagListById">
+        delete from commodity_tag_list where commodity_tag_list_id=#{commodityTagListId}
+    </delete>
+
+    <select id="findAllTagList" resultType="com.xwj2001.entity.CommodityTagList">
+        select ctl.*,c.*,ct.*
+        from commodity_tag_list ctl
+                 left join commodity c on ctl.commodity_id = c.commodity_id
+                 left join commodity_tag ct on ctl.commodity_tag_id = ct.commodity_tag_id
+    </select>
+    <select id="findTagList" resultType="com.xwj2001.entity.CommodityTagList">
+        select ctl.*,c.*,ct.*
+        from commodity_tag_list ctl
+        left join commodity c on ctl.commodity_id = c.commodity_id
+        left join commodity_tag ct on ctl.commodity_tag_id = ct.commodity_tag_id
+        WHERE 1 = 1
+        <if test="commodityTagName != null">
+            AND c.commodity_name LIKE concat('%',#{commodityTagName},'%')
+            OR ct.commodity_tag_name LIKE concat('%',#{commodityTagName},'%')
+        </if>
+    </select>
+</mapper>

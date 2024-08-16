@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xwj2001.mapper.CommodityStyleMapper">
+    <insert id="addStyle">
+        insert into commodity_style (commodity_style_name,commodity_style_img_url,commodity_style_addtime) values
+            (#{commodityStyleName},#{commodityStyleImgUrl},#{commodityStyleAddTime})
+    </insert>
+    <update id="updateStyle">
+        update commodity_style
+        <set>
+            <if test="commodityStyleName != null and commodityStyleName != ''">
+                commodity_style_name=#{commodityStyleName},
+            </if>
+            <if test="commodityStyleImgUrl != null and commodityStyleImgUrl != ''">
+                commodity_style_img_url=#{commodityStyleImgUrl}
+            </if>
+        </set>
+        where commodity_style_id=#{commodityStyleId}
+    </update>
+    <delete id="deleteStyleById">
+        delete from commodity_style where commodity_style_id=#{commodityStyleId}
+    </delete>
+    <select id="findAllStyle" resultType="com.xwj2001.entity.CommodityStyle">
+        select * from commodity_style
+    </select>
+    <select id="findStyle" resultType="com.xwj2001.entity.CommodityStyle">
+        select * from commodity_style where commodity_style_name like concat('%',#{commodityStyleName},'%')
+    </select>
+</mapper>

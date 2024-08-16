@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xwj2001.mapper.ActivityMapper">
+    <insert id="addActivity">
+        insert into activity (activity_name,activity_img_url,activity_begintime,activity_endtime,activity_addtime) values
+            (#{activityName},#{activityImgUrl},#{activityBeginTime},#{activityEndTime},#{activityAddTime})
+    </insert>
+    <update id="updateActivity">
+        update activity
+        <set>
+            <if test="activityName != null and activityName != ''">
+                activity_name=#{activityName},
+            </if>
+            <if test="activityImgUrl != null and activityImgUrl != ''">
+                activity_img_url=#{activityImgUrl},
+            </if>
+            <if test="activityBeginTime != null and activityBeginTime != ''">
+                activity_begintime=#{activityBeginTime},
+            </if>
+            <if test="activityEndTime != null and activityEndTime != ''">
+                activity_endtime=#{activityEndTime}
+            </if>
+        </set>
+        where activity_id=#{activityId}
+    </update>
+    <delete id="deleteActivityById">
+        delete from activity where activity_id=#{activityId}
+    </delete>
+    <select id="findAllActivity" resultType="com.xwj2001.entity.Activity">
+        select * from activity
+    </select>
+    <select id="findActivity" resultType="com.xwj2001.entity.Activity">
+        SELECT * FROM activity
+        WHERE 1 = 1
+        <if test="activityId != null">
+            AND activity_id = #{activityId}
+        </if>
+        <if test="activityName != null">
+            AND activity_name LIKE concat('%',#{activityName},'%')
+        </if>
+        <if test="activityBeginTime != null and activityBeginTime != ''">
+            AND #{activityBeginTime} between activity_begintime and activity_endtime
+        </if>
+    </select>
+    <select id="findActivityCount" resultType="com.xwj2001.entity.Activity">
+        select count(*) as count from  activity
+    </select>
+</mapper>

@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "styleIsolation": "apply-shared",
+  "usingComponents": {
+    "sort-button": "/components/scard/scard",
+    "t-tabs": "tdesign-miniprogram/tabs/tabs",
+    "t-tab-bar-item": "tdesign-miniprogram/tab-bar-item/tab-bar-item",
+    "t-tab-panel": "tdesign-miniprogram/tab-panel/tab-panel",
+    "t-navbar": "tdesign-miniprogram/navbar/navbar",
+    "t-search": "tdesign-miniprogram/search/search"
+  }
+}

@@ -1,0 +1,50 @@
+/* pages/shoppingBag/shoppingBag.wxss */
+page {
+  background-color: #e6e7e7;
+}
+
+.unlogin {
+  margin-top: 50rpx;
+  padding: 50rpx;
+  text-align: center;
+}
+
+.unlogin-title {
+  background-color: tomato;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: x-large;
+}
+
+.tabPanelstyle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.custom-tabs {
+  margin-bottom: 32rpx;
+}
+
+.custom-panel {
+  height: 120px;
+  color: var(--td-text-color-primary);
+}
+.card {
+  width: 100%; /* 根据需要调整每个卡片的宽度 */
+  margin-bottom: 20px; /* 根据需要调整卡片之间的间距 */
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.card-header {
+  display: flex;
+  justify-content:space-between;
+  padding: 10rpx;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+
+.card-content {
+  padding: 10px;
+}

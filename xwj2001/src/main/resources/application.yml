@@ -1,0 +1,55 @@
+server:
+  port: 2001
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/juyatang?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true
+    username: root
+    password: 123456
+  jackson:
+    time-zone: Asia/Shanghai
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      write-dates-as-timestamps: false
+  web:
+    resources:
+      static-locations: classpath:static/,file:static/
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+  freemarker:
+    suffix: .ftl
+    # 模板所在位置（目录）
+    template-loader-path:
+      - classpath:/templates
+    settings:
+      datetime_format: yyyy-MM-dd HH:mm:ss      # date 输出格式化
+      number_format: 0.##            # 模板引擎刷新时间
+      default_encoding: utf-8
+
+
+mybatis-plus:
+  type-aliases-package: com.xwj2001.entity
+  configuration:
+    call-setters-on-nulls: false
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  global-config:
+    field-strategy: 0
+    banner: true
+    db-config:
+      id-type: auto
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+
+logging:
+  level:
+    root: info
+
+gitee:
+  upload:
+    path: /

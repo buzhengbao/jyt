@@ -1,0 +1,42 @@
+<!--pages/types/types.wxml-->
+<view class="top">
+  <view class="search-box" slot="left">
+    <t-search shape="round" placeholder="搜索内容" />
+  </view>
+  <view class='sort-wrap'>
+    <view style="{{currentIndex==0?'color:#d81e06':''}}" class='sort-btn' bindtap="choosesort">
+      综合
+    </view>
+    <view style="{{currentIndex==1?'color:#d81e06':''}}" class='sort-btn' data-index="{{daindex1}}" bindtap="choosesort1">
+      价格
+      <image src="{{imageurl1}}"></image>
+    </view>
+    <view style="{{currentIndex==2?'color:#d81e06':''}}" class='sort-btn' data-index="{{daindex2}}" bindtap="choosesort2">
+      工费
+      <image src="{{imageurl2}}"></image>
+    </view>
+    <view style="{{currentIndex==3?'color:#d81e06':''}}" class='sort-btn' data-index="{{daindex3}}" bindtap="choosesort3">
+      时间
+      <image src="{{imageurl3}}"></image>
+    </view>
+  </view>
+</view>
+<view class="goodsList">
+  <view class="card-wrapper">
+    <view class="card-container" wx:for="{{CommodityInfo}}" wx:key="commodityId">
+      <view data-Id="{{item.commodityId}}" bind:tap="goGoods">
+        <view>
+          <image class="card-image" src="{{item.commodityUrl}}" alt=""></image>
+        </view>
+        <view class="card-content">
+          <h2 style="font-size: large;">{{item.commodityName}}</h2>
+          <view class="text-area">
+            <p style="font-size: xx-small;">工费:{{item.commodityWage}}元/g</p>
+            <p style="font-size: xx-small;">克重:{{item.commodityWeight}}g 库存:{{item.commodityInventory}}</p>
+            <p style="color: red;">￥{{item.commodityPrice}}</p>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

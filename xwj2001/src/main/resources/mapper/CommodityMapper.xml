@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xwj2001.mapper.CommodityMapper">
+    <insert id="addCommodity">
+        insert into commodity (commodity_num, commodity_name, commodity_url, commodity_price,
+                               commodity_fineness, commodity_weight, commodity_inventory, commodity_wage,
+                               commodity_tag_id, commodity_type_id, commodity_style_id, commodity_activity_id,
+                               commodity_addtime)
+        values (#{commodityNum}, #{commodityName}, #{commodityUrl}, #{commodityPrice}, #{commodityFineness}, #{commodityWeight},
+                #{commodityInventory}, #{commodityWage}, #{commodityTagId}, #{commodityTypeId}, #{commodityStyleId},
+                #{commodityActivityId}, #{commodityAddTime})
+    </insert>
+    <update id="updateCommodity">
+        update commodity
+        <set>
+            <if test="commodityNum != null and commodityNum != ''">
+                commodity_num=#{commodityNum},
+            </if>
+            <if test="commodityName != null and commodityName != ''">
+                commodity_name=#{commodityName},
+            </if>
+            <if test="commodityUrl != null and commodityUrl != ''">
+                commodity_url=#{commodityUrl},
+            </if>
+            <if test="commodityPrice != null and commodityPrice != ''">
+                commodity_price=#{commodityPrice},
+            </if>
+            <if test="commodityFineness != null and commodityFineness != ''">
+                commodity_fineness=#{commodityFineness},
+            </if>
+            <if test="commodityWeight != null and commodityWeight != ''">
+                commodity_weight=#{commodityWeight},
+            </if>
+            <if test="commodityInventory != null and commodityInventory != ''">
+                commodity_inventory=#{commodityInventory},
+            </if>
+            <if test="commodityWage != null and commodityWage != ''">
+                commodity_wage=#{commodityWage},
+            </if>
+            <if test="commodityTagId != null and commodityTagId != ''">
+                commodity_tag_id=#{commodityTagId},
+            </if>
+            <if test="commodityTypeId != null and commodityTypeId != ''">
+                commodity_type_id=#{commodityTypeId},
+            </if>
+            <if test="commodityStyleId != null and commodityStyleId != ''">
+                commodity_style_id=#{commodityStyleId},
+            </if>
+            <if test="commodityActivityId != null and commodityActivityId != ''">
+                commodity_activity_id=#{commodityActivityId}
+            </if>
+        </set>
+        where commodity_id=#{commodityId}
+    </update>
+    <delete id="deleteCommodityById">
+        delete from commodity where commodity_id=#{commodityId}
+    </delete>
+    <select id="findAllCommodity" resultType="com.xwj2001.entity.Commodity">
+        select c.*, cs.*, cta.*, cty.*, a.*
+        from commodity c
+                 left join commodity_style cs on cs.commodity_style_id = c.commodity_style_id
+                 left join commodity_tag cta on cta.commodity_tag_id = c.commodity_tag_id
+                 left join commodity_type cty on cty.commodity_type_id = c.commodity_type_id
+                 left join activity a on a.activity_id = c.commodity_activity_id
+
+    </select>
+    <select id="findCommodity" resultType="com.xwj2001.entity.Commodity">
+        select c.*, cs.*, cta.*, cty.*, a.*
+        from commodity c
+        left join commodity_style cs on cs.commodity_style_id = c.commodity_style_id
+        left join commodity_tag cta on cta.commodity_tag_id = c.commodity_tag_id
+        left join commodity_type cty on cty.commodity_type_id = c.commodity_type_id
+        left join activity a on a.activity_id = c.commodity_activity_id
+        WHERE 1 = 1
+        <if test="commodityId != null">
+            AND c.commodity_id = #{commodityId}
+        </if>
+        <if test="commodityNum != null">
+            AND c.commodity_num LIKE concat('%',#{commodityNum},'%')
+            OR c.commodity_name LIKE concat('%',#{commodityNum},'%')
+        </if>
+        <if test="commodityTagId != null">
+            AND c.commodity_tag_id = #{commodityTagId}
+        </if>
+        <if test="commodityTypeId != null">
+            AND c.commodity_type_id = #{commodityTypeId}
+        </if>
+        <if test="commodityStyleId != null">
+            AND c.commodity_style_id = #{commodityStyleId}
+        </if>
+        <if test="commodityActivityId != null">
+            AND c.commodity_activity_id = #{commodityActivityId}
+        </if>
+    </select>
+</mapper>
